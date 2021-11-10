@@ -16,7 +16,7 @@
  - [ ] Timeouts(DB transaction should be timeout in case of transaction takes more than 5 sec)
  - [x] Retries(Retry 2 times in case of any failure while connecting to DB)
  - [x] Circuit Breaker
- - [ ] Rate limiters
+ - [x] Rate limiters Using Bucket4j
  - [x] Unit Testing                     
  - [x] Lombook
  - [ ] Sleuth
