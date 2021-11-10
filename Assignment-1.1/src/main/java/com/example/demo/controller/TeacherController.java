@@ -55,7 +55,7 @@ public class TeacherController {
 	}
 	
 	@GetMapping("/teacher")
-	@Transactional(propagation = Propagation.MANDATORY, timeoutString = "0.1")
+	@Transactional(propagation = Propagation.MANDATORY, timeout = 1)
 	@ApiOperation(value = "", authorizations = { @Authorization(value="JWT") })
 	ResponseEntity<?> getTeachers() {
 		if(bucket.tryConsume(1)) {
