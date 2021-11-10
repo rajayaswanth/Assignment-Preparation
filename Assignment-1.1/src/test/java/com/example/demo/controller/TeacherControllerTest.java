@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.ResponseEntity;
 
 import com.example.demo.entities.Teacher;
 import com.example.demo.repository.TeacherRepository;
@@ -49,13 +50,14 @@ public class TeacherControllerTest {
 		assertEquals("test", response.getName());
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	void getTeacherTest() {
 		teacher.setName("test");
 		teacherList.add(teacher);
 		when(teacherRepo.findAll()).thenReturn(teacherList);
-		List<Teacher> response = teacherController.getTeachers();
-		assertEquals(1, response.size());
+		ResponseEntity<?> response = teacherController.getTeachers();
+		assertEquals(1, ((List<Teacher>) response.getBody()).size());
 	}
 	
 	@Test
