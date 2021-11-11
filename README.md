@@ -12,7 +12,7 @@
  - [x] Swagger 3.0
  - [x] Spring JPA
  - [x] SpringData
- - [ ] Hikari Datasource
+ - [x] Hikari Datasource
  - [x] Timeouts(DB transaction should be timeout in case of transaction takes more than 5 sec)
  - [x] Retries(Retry 2 times in case of any failure while connecting to DB)
  - [x] Circuit Breaker
