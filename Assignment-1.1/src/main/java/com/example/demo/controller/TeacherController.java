@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,7 +54,7 @@ public class TeacherController {
 	}
 	
 	@GetMapping("/teacher")
-	@Transactional(propagation = Propagation.MANDATORY, timeout = 1)
+	@Transactional(timeout = 1)
 	@ApiOperation(value = "", authorizations = { @Authorization(value="JWT") })
 	ResponseEntity<?> getTeachers() {
 		if(bucket.tryConsume(1)) {

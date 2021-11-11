@@ -1,7 +1,6 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +11,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +28,6 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@SuppressWarnings("unused")
 public class Student implements Serializable {
 	
 	private static final long serialVersionUID = -7402208012345607194L;
@@ -43,6 +41,7 @@ public class Student implements Serializable {
 	
 	private String email;
 	
+	@JsonBackReference
 	@ManyToOne
 	private Course course;
 

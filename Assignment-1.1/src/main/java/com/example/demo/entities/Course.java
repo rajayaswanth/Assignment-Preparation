@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,8 +41,8 @@ public class Course implements Serializable {
 	
 	private String name;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "course")
+	@JsonManagedReference
+	@OneToMany(mappedBy = "course", orphanRemoval = true)
 	private List<Student> students;
 	
 	@ManyToOne
