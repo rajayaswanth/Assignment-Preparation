@@ -20,7 +20,6 @@
  - [x] Unit Testing                     
  - [x] Lombook
  - [x] Sleuth
- - [x] Zipkin
  - [x] Acutator(Metrics & health check URL configuration)
  - [ ] Kubernates configuration
  - [x] Profiles(Dev, QA,Prod)
