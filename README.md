@@ -19,7 +19,7 @@
  - [x] Rate limiters Using Bucket4j
  - [x] Unit Testing                     
  - [x] Lombook
- - [ ] Sleuth
+ - [x] Sleuth
  - [x] Acutator(Metrics & health check URL configuration)
  - [ ] Kubernates configuration
  - [x] Profiles(Dev, QA,Prod)
