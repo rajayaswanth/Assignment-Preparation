@@ -13,7 +13,7 @@
  - [x] Spring JPA
  - [x] SpringData
  - [ ] Hikari Datasource
- - [ ] Timeouts(DB transaction should be timeout in case of transaction takes more than 5 sec)
+ - [x] Timeouts(DB transaction should be timeout in case of transaction takes more than 5 sec)
  - [x] Retries(Retry 2 times in case of any failure while connecting to DB)
  - [x] Circuit Breaker
  - [x] Rate limiters Using Bucket4j
