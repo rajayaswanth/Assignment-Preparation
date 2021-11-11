@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.batchConfig;
 
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
