@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.retry.annotation.Backoff;
@@ -15,6 +18,8 @@ import io.swagger.annotations.Authorization;
 @RestController
 public class RetryController {
 	
+	private static final Logger LOG = Logger.getLogger(RetryController.class.getName());
+	
 	@Autowired
 	TeacherController teacherController;
 	
@@ -22,6 +27,7 @@ public class RetryController {
 	@ApiOperation(value = "", authorizations = { @Authorization(value="JWT") })
 	@Retryable(value = {EmptyResultDataAccessException.class}, maxAttempts = 5, backoff = @Backoff(delay = 1000))
 	public String getTeachersWithRetry(@RequestParam Long id){
+		LOG.log(Level.INFO, "Retry api is called...");
 		try {
 			System.out.println("Retrying...");
 			teacherController.deleteTeacher(id);

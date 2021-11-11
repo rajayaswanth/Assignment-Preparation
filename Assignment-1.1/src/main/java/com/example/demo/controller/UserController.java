@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
@@ -24,6 +26,8 @@ import io.swagger.annotations.Authorization;
 @RequestMapping(value = "/users")
 public class UserController {
 	
+	private static final Logger LOG = Logger.getLogger(UserController.class.getName());
+	
 	@Autowired
 	UserRepository userRepo;
 	
@@ -37,6 +41,7 @@ public class UserController {
 	 */
 	@PostMapping(value = "/add")
 	public User addUser(@RequestBody @Nullable User userRequest) {
+		LOG.log(Level.INFO, "Add User api is called...");
 		userRequest.setPassword(encoder.encode(userRequest.getPassword()));
 		return userRepo.save(userRequest);
 	}
@@ -49,6 +54,7 @@ public class UserController {
 	@PutMapping(value = "/update")
 	@ApiOperation(value = "", authorizations = { @Authorization(value="JWT") })
 	public User updateUser(@RequestBody User userRequest) {
+		LOG.log(Level.INFO, "Update User api is called...");
 		userRequest.setPassword(encoder.encode(userRequest.getPassword()));
 		return userRepo.save(userRequest);
 	}
@@ -60,6 +66,7 @@ public class UserController {
 	@GetMapping(value = "/getAll")
 	@ApiOperation(value = "", authorizations = { @Authorization(value="JWT") })
 	public List<User> getUsers() {
+		LOG.log(Level.INFO, "Get all Users api is called...");
 		return userRepo.findAll();
 	}
 	
@@ -71,6 +78,7 @@ public class UserController {
 	@DeleteMapping(value = "/delete/{id}")
 	@ApiOperation(value = "", authorizations = { @Authorization(value="JWT") })
 	public String deleteUser(@PathVariable Long id) {
+		LOG.log(Level.INFO, "Delete User api is called...");
 		userRepo.deleteById(id);
 		return "deleted successfully";
 	}

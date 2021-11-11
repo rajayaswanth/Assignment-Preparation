@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.retry.annotation.Recover;
@@ -15,6 +18,8 @@ import io.swagger.annotations.Authorization;
 @RestController
 public class CircuitBreakerController {
 	
+	private static final Logger LOG = Logger.getLogger(CircuitBreakerController.class.getName());
+	
 	@Autowired
 	TeacherController teacherController;
 	
@@ -22,6 +27,7 @@ public class CircuitBreakerController {
 	@ApiOperation(value = "", authorizations = { @Authorization(value="JWT") })
 	@HystrixCommand(fallbackMethod = "fallBack")
 	public String getTeachersWithCircuitBreaker(@RequestParam Long id){
+		LOG.log(Level.INFO, "Get Teachers With CircuitBreaker called...");
 		try {
 			teacherController.deleteTeacher(id);
 			return "Deleted Successfully";

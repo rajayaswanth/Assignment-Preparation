@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -29,6 +31,8 @@ import io.swagger.annotations.Authorization;
 @RestController
 public class TeacherController {
 	
+	private static final Logger LOG = Logger.getLogger(TeacherController.class.getName());
+	
 	private final Bucket bucket;
 
     public TeacherController() {
@@ -44,12 +48,14 @@ public class TeacherController {
 	@PostMapping("/teacher")
 	@ApiOperation(value = "", authorizations = { @Authorization(value="JWT") })
 	Teacher addTeacher(@RequestBody Teacher teacher) {
+		LOG.log(Level.INFO, "Add Teacher api is called...");
 		return teacherRepo.save(teacher);
 	}
 	
 	@PutMapping("/teacher")
 	@ApiOperation(value = "", authorizations = { @Authorization(value="JWT") })
 	Teacher updateTeacher(@RequestBody Teacher teacher) {
+		LOG.log(Level.INFO, "Update Teacher api is called...");
 		return teacherRepo.save(teacher);
 	}
 	
@@ -57,6 +63,7 @@ public class TeacherController {
 	@Transactional(timeout = 1)
 	@ApiOperation(value = "", authorizations = { @Authorization(value="JWT") })
 	ResponseEntity<?> getTeachers() {
+		LOG.log(Level.INFO, "Get Teacher api is called...");
 		if(bucket.tryConsume(1)) {
 			return new ResponseEntity<List<Teacher>>(teacherRepo.findAll(), HttpStatus.OK);
 		}
@@ -66,6 +73,7 @@ public class TeacherController {
 	@DeleteMapping("/teacher/{id}")
 	@ApiOperation(value = "", authorizations = { @Authorization(value="JWT") })
 	Boolean deleteTeacher(@PathVariable Long id) {
+		LOG.log(Level.INFO, "Delete Teacher api is called...");
 		try {
 			teacherRepo.deleteById(id);
 			return true;
